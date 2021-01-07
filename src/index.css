@@ -4,8 +4,8 @@ body {
 }
 
 .header {
-  padding: 24px;
-  background-color:#ececee;
+  padding: 0 24px;
+  /* background-color:#ececee; */
 }
 
 .todo-list {
@@ -37,14 +37,20 @@ body {
   padding: 8px 0;
   border-bottom: 1px solid #cecece;
   font-family: Roboto, sans-serif;
-  font-weight: 100;
   font-size: 15px;
+  font-weight: 600;
   color: #333333;
+  cursor: pointer;
+}
+
+.todo-item:hover {
+  color: #2E76F6;
 }
 
 input[type=checkbox] {
   margin-right: 10px;
   font-size: 30px;
+  cursor: pointer;
 }
 
 input[type=checkbox]:focus {

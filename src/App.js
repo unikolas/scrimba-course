@@ -1,24 +1,44 @@
 import React from "react"
-import Product from "./tasks/Product"
-import productsData from "./tasks/vschoolProducts"
+import TodoItem from "./components/TodoItem"
+import todosData from "./storage/todosData"
 
-const listOfProducts = productsData.map(
-  item => <Product key={item.id} product={item}/>
-)
-
-const products = productsData.map(
-  function (item) {
-    return <Product key={item.id} product={item}/>
-  }
-)
-
-function App() {
-  return (
-    <div>
-      {/* {listOfProducts} */}
-      {products}
-    </div>
-  )
+class App extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            todos: todosData // Todos are stored here
+        }
+        this.handleChange = this.handleChange.bind(this)
+    }
+    
+    handleChange(id) { // This is a change handler for a todoItem
+        this.setState(prevState => {
+          const updatedTodos = prevState.todos.map( todo => {
+              if (todo.id === id) {
+                todo.completed = !todo.completed
+              }
+              return todo
+            })
+          return {
+            todos: updatedTodos
+          }
+        })
+    }
+    
+    render() {
+        const todoItems = this.state.todos.map( // This renders all items
+          item => <TodoItem // This renders one item
+            key={item.id}
+            item={item}
+            handleChange={this.handleChange}
+          />
+        )
+        return ( // Here we insert all our items
+            <div className="todo-list">
+                {todoItems} 
+            </div>
+        )    
+    }
 }
 
 export default App
