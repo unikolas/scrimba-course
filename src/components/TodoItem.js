@@ -9,6 +9,10 @@ class TodoItem extends Component {
     }
   }
   render() {
+    const completedStyle = {
+      textDecoration: 'line-through',
+      opacity: 0.4
+    }
     return (
       <div className={"todo-item"}
         onClick={() => this.props.handleChange(this.props.item.id)}
@@ -18,7 +22,7 @@ class TodoItem extends Component {
           // onChange={() => this.props.handleChange(this.props.item.id)}
           onChange={() => "It's allright..."}
           />
-        <p>{this.props.item.text ? this.props.item.text : "🤔 An empty one"}</p>
+        <p style = {this.props.item.completed ? completedStyle : null}>{this.props.item.text ? this.props.item.text : "🤔 An empty one"}</p>
       </div>
     )
   }
