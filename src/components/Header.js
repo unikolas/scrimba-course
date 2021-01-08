@@ -1,11 +1,9 @@
 import React from "react"
 
-function Header() {
-  return (
-    <header className="header">
-      <h1>Todo list</h1>
-    </header>
-  )
+function Header(props) {
+    return(
+        <div>
+            Header
+        </div>
+    )
 }
-
-export default Header
