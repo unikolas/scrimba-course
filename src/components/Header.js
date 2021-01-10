@@ -3,7 +3,9 @@ import React from "react"
 function Header(props) {
     return(
         <div>
-            Header
+            <h1>Meme generator</h1>
         </div>
     )
 }
+
+export default Header
