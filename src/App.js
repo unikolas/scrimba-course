@@ -1,35 +1,27 @@
-import React, {useState, useEffect} from "react"
-import randomcolor from "randomcolor"
+import React from "react"
+import {Route, Switch } from 'react-router-dom'
+
+import Wrapper from "./components/Wrapper"
+import Navigation from "./components/Navigation"
+
+import Error404 from './pages/Error404'
+import Home from './pages/Home'
+import About from './pages/About'
+import AppCallback from './pages/AppCallback'
+import FramerMotion from "./pages/FramerMotion"
 
 function App() {
-    const [count, setCount] = useState(0)
-    const [color, setColor] = useState("")
-    const [intervalId, setIntervalId] = useState()
-    
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            setCount(prevCount => prevCount + 1)
-        }, 1001)
-        setIntervalId(intervalId)
-        console.log("set up")
-        return (() => {
-            console.log("cleared")
-            clearInterval(intervalId)
-        })
-    }, [])
-    
-    useEffect(() => setColor(randomcolor()), [count])
-
-    function clearIntervalId() {
-        clearInterval(intervalId)
-        console.log("cleared")
-    }
-
     return (
-        <div style={{padding: 40}}>
-            <h1 style={{color: color}}>{count}</h1>
-            <button onClick={clearIntervalId}>Clear</button>
-        </div>
+        <main>
+            <Navigation isOpen={false} />
+            <Switch >
+                <Route path="/" component={Home} exact />
+                <Route path="/framer-motion" component={FramerMotion} />
+                <Route path="/app-callback" component={AppCallback} />
+                <Route path="/about" component={About} />
+                <Route component={Error404} />
+            </Switch>
+        </main>
     )
 }
 

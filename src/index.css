@@ -1,11 +1,26 @@
 * {
     box-sizing: border-box;
+    vertical-align: top;
+    /* outline: 0.3px dotted rgba(0,0,0,0.15); */
 }
 
 body {
     margin: 0;
     background-color: whitesmoke;
     font-family: sans-serif;
+}
+
+/* p {
+    margin: 0px;
+} */
+
+a {
+    color: #0029e2;
+    text-decoration: none;
+} 
+
+a:hover {
+    color: #c00151;
 }
 
 input {
@@ -22,6 +37,10 @@ button {
 h1 {
     font-size: 28px;
     margin: 0 0 32px 0;
+}
+
+.add-margin {
+    margin: 0 16px 16px 0;
 }
 
 .meme-form {
