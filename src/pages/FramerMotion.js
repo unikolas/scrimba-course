@@ -6,11 +6,9 @@ import Wrapper from "../components/Wrapper"
 
 const navStateVariants = {
     open: { 
-        // x: 0,
-        // width: "200%"
+        
     },
     closed: { 
-        // x: "50vw",
         width: "100%",
         backgroundColor: "#FF5D7A",
     },
@@ -23,7 +21,7 @@ const Block = (props) => {
         <div>
             <div style={blockStyle}>
                 {props.link ? 
-                    <a style={header} href={props.link} target="_blank">{props.header}</a> 
+                    <a style={header} href={props.link} target="_blank" rel="noreferrer">{props.header}</a> 
                     : <p style={header}>{props.header}</p>}
                 {props.text && <code>{props.text}</code>}
             </div>

@@ -1,7 +1,6 @@
 import React from "react"
 import {Route, Switch } from 'react-router-dom'
 
-import Wrapper from "./components/Wrapper"
 import Navigation from "./components/Navigation"
 
 import Error404 from './pages/Error404'
