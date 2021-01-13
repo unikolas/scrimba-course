@@ -11,7 +11,7 @@ import elevation from "../constants/elevation"
 const navStyles ={
     margin: 16,
     size: 40,
-    shift: 56
+    shift: -72
 }
 
 const StyledLink = styled(Link)`
@@ -26,36 +26,63 @@ const StyledLink = styled(Link)`
 `
 
 const Menu = (props) => {
+    const animateMenu = {
+        open: {
+            y: -navStyles.shift,
+            opacity: 1,
+            display: "block",
+        },
+        closed: { 
+            y: 0,
+            opacity: 0,
+            transitionEnd: {
+                display: "none",
+            },
+        },
+    }
     return (
-      <div className={props.className}>
-        <StyledLink to="/">Home</StyledLink>
-        <StyledLink to="/framer-motion">Framer Motion</StyledLink>
-        <StyledLink to="/app-callback">App Callback</StyledLink>
-        <StyledLink to="/about">About Us</StyledLink>
-        <StyledLink to="/shop">Shop Now</StyledLink>
-      </div>
+      <motion.div 
+            className={props.className}
+            animate={props.isOpen ? "open" : "closed"}
+            transition={{type: "spring", damping: 50, stiffness: 500}}
+            variants={animateMenu}
+            >
+                <StyledLink to="/">Home</StyledLink>
+                <StyledLink to="/framer-motion">Framer Motion</StyledLink>
+                <StyledLink to="/app-callback">App Callback</StyledLink>
+                <StyledLink to="/about">About Us</StyledLink>
+                <StyledLink to="/shop">Shop Now</StyledLink>
+      </motion.div>
     )
 }
 
 const StyledMenu = styled(Menu)`
     position: absolute;
-    right: ${navStyles.shift - 56}px;
-    top: ${0}px;
     background-color: white;
     width: auto;
     padding: 40px;
     border-radius: 9px;
-    transition: opacity ${kit.animation.duration.long}, position 0.3s;
     ${elevation("e600")};
+    right: 0;
+    top: ${navStyles.shift}px;
+    /* top: ${0}px; */
+    ${props => props.isOpen ? css`
+        display: block;
+    ` 
+    : css`display: none;`}
+    display: block;
 `
 
 const NavButton = styled.div`
+    position: relative;
     cursor: pointer;
+    margin: 12px;
     width: ${navStyles.size}px;
     height: ${navStyles.size}px;
     background-color: #fff;
+    border: ${props => props.isOpen? "2px solid #E8E3E3" : "none"};
     border-radius: 56px;
-    ${elevation("e100")};
+    ${ props => !props.isOpen ? elevation("e100") : elevation("e0")};
     :hover { 
         ${elevation("e100", true)} 
     };
@@ -66,9 +93,9 @@ const Navigation = (props) => {
     const [isOpen, setIsOpen] = useState(props.isOpen || false)
     const handleClick = () => setIsOpen(!isOpen)
     return (
-        <div className={props.className}>
+        <div className={props.className} style={{align: "right"}}>
             <StyledMenu isOpen={isOpen}/>
-            <NavButton onClick={handleClick}/>
+            <NavButton isOpen={isOpen} onClick={handleClick}/>
         </div>
     )
 }

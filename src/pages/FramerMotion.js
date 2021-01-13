@@ -14,7 +14,7 @@ const navStateVariants = {
         width: "100%",
         backgroundColor: "#FF5D7A",
     },
-  }
+}
 
 const Block = (props) => {
     const blockStyle ={margin: "48px 16px 20px 0"}
@@ -63,7 +63,7 @@ const MyComponent = () => {
             <Block 
                 header={"Variants"}
                 link={"https://www.framer.com/api/motion/types/#transition"}
-                text={'type: "spring", damping: 50, stiffness: 500'}
+                text={'transition={{type: "spring", damping: 50, stiffness: 500}}'}
             >
                 <motion.div
                     onClick={() => setIsOpen(!isOpen)}

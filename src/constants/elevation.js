@@ -1,6 +1,10 @@
 import {css} from "styled-components"
 
 const elevation = {
+    e0: {
+        default: "0 0 0 rgba(0,0,0,0.0)",
+        hover: "0 0 0 rgba(0,0,0,0.0)"
+    },
     e100: {
         default: "0 1px 2px rgba(0,0,0,0.15)",
         hover: "0 9px 13px rgba(0,0,0,0.1)"
