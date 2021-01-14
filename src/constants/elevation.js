@@ -7,7 +7,7 @@ const elevation = {
     },
     e100: {
         default: "0 1px 2px rgba(0,0,0,0.15)",
-        hover: "0 9px 13px rgba(0,0,0,0.1)"
+        hover: "0 3px 5px rgba(0,0,0,0.1)"
     },
     e300: {
         default: "0 3px 9px rgba(0,0,0,0.15)",

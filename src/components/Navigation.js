@@ -3,9 +3,12 @@ import {Link} from "react-router-dom"
 import styled, {css} from 'styled-components'
 import { motion } from "framer-motion"
 
-import kit from "../constants/general"
+import animation from "../constants/animation"
 import typography from "../constants/typography"
 import elevation from "../constants/elevation"
+import colors from "../constants/colors"
+
+import Icon from "../components/Icon"
 
 
 const navStyles ={
@@ -65,40 +68,68 @@ const StyledMenu = styled(Menu)`
     ${elevation("e600")};
     right: 0;
     top: ${navStyles.shift}px;
-    /* top: ${0}px; */
     ${props => props.isOpen ? css`
         display: block;
     ` 
     : css`display: none;`}
-    display: block;
 `
 
-const NavButton = styled.div`
+const Navigation = (props) => {
+    const [isOpen, setIsOpen] = useState(props.isOpen || false)
+    const handleClick = () => setIsOpen(!isOpen)
+
+    return (
+        <div className={props.className} style={{align: "right"}}>
+            <StyledMenu isOpen={isOpen} />
+            <StyledNavButton isOpen={isOpen} onClick={handleClick} />
+        </div>
+    )
+}
+
+const NavButton = (props) => {
+    const icon = props.isOpen ? "close" : "menu"
+    const iconAnimations = {
+        open: {rotate: 0},
+        close: {rotate: -90},
+    }
+    const [ iconColor, setIconColor ] = useState(colors.grey80)
+    const [ iconAnimation, setIconAnimation ] = useState(iconAnimations.open)
+
+    return (
+        <div 
+            className={props.className}
+            onClick={() => {
+                props.onClick()
+                setIconAnimation(props.isOpen ? iconAnimations.open : iconAnimations.close)
+            }}
+            onMouseEnter={() => setIconColor(colors.primary)}
+            onMouseLeave={() => setIconColor(colors.grey80)}
+        >
+            <Icon name={icon} size={"sm"} color={iconColor} 
+                animate={iconAnimation}
+                transition={{type: "spring", damping: 50, stiffness: 500}}
+                />
+        </div>
+    )
+}
+
+const StyledNavButton = styled(NavButton)`
     position: relative;
     cursor: pointer;
     margin: 12px;
     width: ${navStyles.size}px;
     height: ${navStyles.size}px;
     background-color: #fff;
-    border: ${props => props.isOpen? "2px solid #E8E3E3" : "none"};
     border-radius: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     ${ props => !props.isOpen ? elevation("e100") : elevation("e0")};
-    :hover { 
-        ${elevation("e100", true)} 
+    :hover {
+        ${props => props.isOpen? elevation("e0") : elevation("e100", true)};
     };
-    transition: box-shadow ${kit.animation.curve.default} ${kit.animation.duration.short};
+    transition: box-shadow ${animation.curve.cubic} ${animation.duration.md};
 `
-
-const Navigation = (props) => {
-    const [isOpen, setIsOpen] = useState(props.isOpen || false)
-    const handleClick = () => setIsOpen(!isOpen)
-    return (
-        <div className={props.className} style={{align: "right"}}>
-            <StyledMenu isOpen={isOpen}/>
-            <NavButton isOpen={isOpen} onClick={handleClick}/>
-        </div>
-    )
-}
 
 const StyledNavigation = styled(Navigation)`
     display: block;

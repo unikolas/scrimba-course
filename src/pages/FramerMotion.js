@@ -3,6 +3,7 @@ import {motion} from "framer-motion"
 
 import Header from "../components/Header"
 import Wrapper from "../components/Wrapper"
+import Icon from "../components/Icon"
 
 const navStateVariants = {
     open: { 
@@ -31,6 +32,7 @@ const Block = (props) => {
     )
 }
 
+
 const MyComponent = () => {
     const [isOpen, setIsOpen] = useState(true)
 
@@ -48,43 +50,80 @@ const MyComponent = () => {
             <button onClick={() => setIsOpen(!isOpen)} >Animate </button>
             <Block 
                 header={"Variants"}
-                text={"Simple width and colour."}
+                text={"Simply define states of the animation."}
             >
                 <motion.div
+                    style={boxStyles}
                     onClick={() => setIsOpen(!isOpen)}
                     animate={isOpen ? "open" : "closed"}
                     variants={navStateVariants}
-                    style={boxStyles}
                 />
             </Block>
 
             <Block 
-                header={"Variants"}
+                header={"Types"}
                 link={"https://www.framer.com/api/motion/types/#transition"}
                 text={'transition={{type: "spring", damping: 50, stiffness: 500}}'}
             >
                 <motion.div
+                    style={boxStyles}
                     onClick={() => setIsOpen(!isOpen)}
                     animate={isOpen ? "open" : "closed"}
                     variants={navStateVariants}
                     transition={{ 
                         type: "spring", 
-                        damping: 50,
-                        stiffness: 500,
+                        damping: 40,
+                        stiffness: 400,
                         // mass: 0.5
                     }}
-                    style={boxStyles}
                 />
+            </Block>
+            
+            <Block
+                header={"Drag"}
+                link={"https://www.framer.com/api/motion/examples/#drag"}
+                text={'drag, dragConstraints = {{top: ... , left: ... , right: ... , bottom: ... , }}'}
+            >
+                <motion.div
+                    style={boxStyles}
+                    drag
+                    dragConstraints={{
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                    }}
+                />
+            </Block>
+
+            
+
+            <Block
+                header={"Icon"}
+                text={'name={"..."}, size={"..."}, color={"..."}, hover={boolean}'}
+            >
+                <Header as='h3' >Header here</Header>
+                <Icon name={"sanitizer"} size={"sm"} color={"#FF5D7A"}/>
+                <Icon name={"sanitizer"} size={"md"} color={"#FF5D7A"} hover={true}/>
+                <Icon name={"sanitizer"} size={"lg"} hover={true}/>
+                <Icon name={"sanitizer"} size={"xl"} hover={true}/>
+                <Icon name={"sanitizer"} size={"xxl"} hover={true}/>
+                <Icon name={"sanitizer"} size={"xxxl"} color={"#FF5D7A"}/>
+                <Icon name={"sanitizer"} size={"xxxl"} color={"#FF5D7A"}
+                    animate={{x: 100}}
+                    />
             </Block>
         </div>
     )
 }
+
 
 function FramerMotion() {
     return (
         <Wrapper>
             <Header>Framer Motion</Header>
             <MyComponent/>
+            
         </Wrapper>
     )
 }
