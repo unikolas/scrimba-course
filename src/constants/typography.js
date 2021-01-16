@@ -38,7 +38,7 @@ const typography = {
 
         h1:css`
             font-family: ${FONTS.HEADING_FONT};
-            font-weight: 600;
+            font-weight: 700;
             font-size: 43px;
             line-height: 52px;
             letter-spacing: -0.025em;

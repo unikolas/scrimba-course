@@ -1,9 +1,9 @@
-import React from "react"
+import styled from "styled-components"
+import typography from "../constants/typography"
 
-function Header(props) {
-    return(
-        <h1>{props.children}</h1>
-    )
-}
+// const Header = (props) => <h1>{props.children}</h1>
+const Header = styled.h1` 
+    ${props => props.variant ? typography.header[props.variant] : typography.header.h2 }
+`
 
 export default Header

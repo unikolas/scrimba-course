@@ -1,11 +1,11 @@
-import React from "react"
-import Header from "../components/Header"
-import Wrapper from "../components/Wrapper"
+import React from 'react'
+import Header from '../components/Header'
+import Wrapper from '../components/Wrapper'
 
-function Home() {
+const Home = () => {
     return (
         <Wrapper>
-            <Header>Hello World!</Header>
+            <Header>Home</Header>
         </Wrapper>
     )
 }

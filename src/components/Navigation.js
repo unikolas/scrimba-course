@@ -51,10 +51,9 @@ const Menu = (props) => {
             variants={animateMenu}
             >
                 <StyledLink to="/">Home</StyledLink>
+                <StyledLink to="/catch-me">Catch me!</StyledLink>
                 <StyledLink to="/framer-motion">Framer Motion</StyledLink>
                 <StyledLink to="/app-callback">App Callback</StyledLink>
-                <StyledLink to="/about">About Us</StyledLink>
-                <StyledLink to="/shop">Shop Now</StyledLink>
       </motion.div>
     )
 }
@@ -79,7 +78,7 @@ const Navigation = (props) => {
     const handleClick = () => setIsOpen(!isOpen)
 
     return (
-        <motion.div drag className={props.className} style={{align: "right"}}>
+        <motion.div className={props.className} style={{align: "right"}}>
             <StyledMenu isOpen={isOpen} />
             <StyledNavButton isOpen={isOpen} onClick={handleClick} />
         </motion.div>
@@ -93,7 +92,7 @@ const NavButton = (props) => {
         close: {rotate: -90},
     }
     const [ iconColor, setIconColor ] = useState(colors.grey80)
-    const [ iconAnimation, setIconAnimation ] = useState(iconAnimations.open)
+    const [ iconAnimation, setIconAnimation ] = useState()
 
     return (
         <div 
@@ -135,8 +134,8 @@ const StyledNavigation = styled(Navigation)`
     display: block;
     position: fixed;
     right: ${navStyles.margin*2}px;
-    top: 25vh;
+    top: ${navStyles.margin+12}px;
     z-index: 100;
 `
-// top: ${navStyles.margin}px;
+
 export default StyledNavigation

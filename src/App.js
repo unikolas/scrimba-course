@@ -5,9 +5,10 @@ import Navigation from "./components/Navigation"
 
 import Error404 from './pages/Error404'
 import Home from './pages/Home'
-import About from './pages/About'
-import AppCallback from './pages/AppCallback'
+import CatchMe from './pages/CatchMe'
 import FramerMotion from "./pages/FramerMotion"
+
+import AppCallback from './pages/AppCallback'
 
 function App() {
     return (
@@ -15,9 +16,9 @@ function App() {
             <Navigation isOpen={false} />
             <Switch >
                 <Route path="/" component={Home} exact />
+                <Route path="/catch-me" component={CatchMe} />
                 <Route path="/framer-motion" component={FramerMotion} />
                 <Route path="/app-callback" component={AppCallback} />
-                <Route path="/about" component={About} />
                 <Route component={Error404} />
             </Switch>
         </main>
