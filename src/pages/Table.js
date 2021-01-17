@@ -31,6 +31,9 @@ function arrayToJSONObject(arr) {
     return formatted;
 }
 
+const formatAmount = value => formatValue({value: value,intlConfig: { locale: 'en-GB', currency: 'GBP' }})
+
+
 // Table
 
 const Table = (props) => {
@@ -54,11 +57,12 @@ const Table = (props) => {
                 accessor: 'current-balance',
                 Cell: props => {
                     return (
-                        <div onClick={()=> console.log(props)}>
-                            {formatValue({
-                                value   : props.value,
-                                intlConfig: { locale: 'en-GB', currency: 'GBP' }
-                            })}
+                        <div 
+                            onClick={()=> {
+                                console.log(props.value)
+                            }}
+                        >
+                            {formatAmount(props.value)}
                         </div>
                     )
                 }
@@ -85,13 +89,13 @@ const Table = (props) => {
         },
         header: {
             textAlign: 'left',
-            fontSize: 12,
-            padding: 8,
+            fontSize: 13,
+            padding: '8px 24px 8px 8px',
         },
         row: {
             textAlign: 'left',
-            fontSize: 12,
-            padding: 8,
+            fontSize: 13,
+            padding: '8px 24px 8px 8px',
         }
     }
 
