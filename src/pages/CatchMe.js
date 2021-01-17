@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from "framer-motion"
+import randomcolor from "randomcolor"
 
 import colors from '../constants/colors'
 
@@ -30,6 +31,7 @@ function CatchMe() {
     const Boxed = () => {
         const [isAnimated, setAnimated] = useState(false)
         const [textAnimation, setTextAnimation] = useState({marginTop: "100px"})
+        const [color, setColor] = useState(randomcolor)
     
         const handleAnimation = (event) => {
             setAnimated(!isAnimated)
@@ -38,7 +40,7 @@ function CatchMe() {
     
         return (
             <Box 
-                bc={colors.primary}
+                bc={color}
                 w={"50vh"}
                 h={"50vh"}
                 br={"50vh"}
@@ -50,8 +52,13 @@ function CatchMe() {
                     overflow: "hidden",
                 }}
         
-                onMouseEnter={handleAnimation}
-                onMouseLeave={handleAnimation}
+                onMouseEnter={ () => {
+                    handleAnimation()
+                }}
+                onMouseLeave={ () => { 
+                    handleAnimation()
+                }}
+                // onClick={() => {setItem(randomItem)}}
             >
                 <motion.p 
                     animate={textAnimation}
@@ -79,7 +86,7 @@ function CatchMe() {
                     display: "block",
                     margin: "120px auto",
                 }}
-                onClick={() => setItem(randomItem)}
+                onClick={() => {setItem(randomItem)}}
             >Wanna something else?</button>
         </Wrapper>
     )

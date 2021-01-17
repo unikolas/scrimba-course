@@ -29,6 +29,12 @@ const StyledLink = styled(Link)`
 `
 
 const Menu = (props) => {
+
+    const links = [
+        ['/', 'Home'],
+        ['/catch-me', 'Catch Me!'],
+    ]
+
     const animateMenu = {
         open: {
             y: -navStyles.shift,
@@ -53,7 +59,10 @@ const Menu = (props) => {
                 <StyledLink to="/">Home</StyledLink>
                 <StyledLink to="/catch-me">Catch me!</StyledLink>
                 <StyledLink to="/framer-motion">Framer Motion</StyledLink>
-                <StyledLink to="/app-callback">App Callback</StyledLink>
+                <StyledLink to="/circles">Circles</StyledLink>
+                <StyledLink to="/table">Table</StyledLink>
+                <StyledLink to="/playground">Playground</StyledLink>
+                {/* <StyledLink to="/app-callback">App Callback</StyledLink> */}
       </motion.div>
     )
 }
