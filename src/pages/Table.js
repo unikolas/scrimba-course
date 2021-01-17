@@ -2,8 +2,13 @@ import React from 'react'
 import Header from '../components/Header'
 import Wrapper from '../components/Wrapper'
 import { useTable } from 'react-table'
+import CurrencyInput from 'react-currency-input-field'
+import { formatValue } from 'react-currency-input-field'
 
 import colors from '../constants/colors'
+import typography from '../constants/typography'
+
+
 
 // Data manpulations
 
@@ -40,13 +45,23 @@ const Table = (props) => {
                 Header: 'Name',
                 accessor: 'name',
             },
-            {
-                Header: 'Currnecy',
-                accessor: 'currency',
-            },
+            // {
+            //     Header: 'Currnecy',
+            //     accessor: 'currency',
+            // },
             {
                 Header: 'Current balance',
                 accessor: 'current-balance',
+                Cell: props => {
+                    return (
+                        <div onClick={()=> console.log(props)}>
+                            {formatValue({
+                                value   : props.value,
+                                intlConfig: { locale: 'en-GB', currency: 'GBP' }
+                            })}
+                        </div>
+                    )
+                }
             },
 
         ], []
@@ -58,7 +73,7 @@ const Table = (props) => {
                 ['id', 'name', 'currency', 'current-balance'],
                 ['1', 'Account 1', 'GBP' , '1000'],
                 ['2', 'Account 2', 'USD' , '10.23'],
-                ['3', 'Account Number Three', 'RUB' , '120,233.11'],
+                ['3', 'Account Number Three', 'RUB' , '120233.11'],
             ]
         ), []
     )
@@ -66,6 +81,7 @@ const Table = (props) => {
     const styles = {
         table: {
             backgroundColor: colors.grey95,
+            padding: 32,
         },
         header: {
             textAlign: 'left',

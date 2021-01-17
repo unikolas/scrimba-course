@@ -44,12 +44,12 @@ const typography = {
             letter-spacing: -0.025em;
 
             @media (min-width: 1920px) { /* XLarge desktop - MED */
-            font-size: 47px;
-            line-height: 62px;
+                font-size: 47px;
+                line-height: 62px;
             }
             @media (max-width: 399px) { /* Mobile - HIGH */
-            font-size: 35px;
-            line-height: 44px;
+                font-size: 35px;
+                line-height: 44px;
             }
         `,
         h2: css`
