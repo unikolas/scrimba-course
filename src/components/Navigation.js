@@ -30,10 +30,10 @@ const StyledLink = styled(Link)`
 
 const Menu = (props) => {
 
-    const links = [
-        ['/', 'Home'],
-        ['/catch-me', 'Catch Me!'],
-    ]
+    // const links = [
+    //     ['/', 'Home'],
+    //     ['/catch-me', 'Catch Me!'],
+    // ]
 
     const animateMenu = {
         open: {

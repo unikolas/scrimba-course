@@ -31,7 +31,7 @@ function CatchMe() {
     const Boxed = () => {
         const [isAnimated, setAnimated] = useState(false)
         const [textAnimation, setTextAnimation] = useState({marginTop: "100px"})
-        const [color, setColor] = useState(randomcolor)
+        const [color] = useState(randomcolor)
     
         const handleAnimation = (event) => {
             setAnimated(!isAnimated)
