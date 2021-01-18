@@ -152,6 +152,7 @@ const Page = () => {
         <Wrapper>
             <Header>Table</Header>
             <div>
+                <div>Let's test Jira integration</div>
                 <Table />
             </div>
         </Wrapper>
