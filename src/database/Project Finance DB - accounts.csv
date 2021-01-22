@@ -1,0 +1,7 @@
+id,state,type,name,currency,current_balance,institution
+f1bd0dac-b780-447c-9685-2d92ebb450ea,active,current,Revolut,GBP,500,56848580-a459-488b-8609-ef7f24017e82
+7d362de7-9f19-4e5e-af9d-f7e951f1f177,active,current,Revolut,USD,82.23,56848580-a459-488b-8609-ef7f24017e82
+2c024d13-cc31-45b4-a4aa-a1daa789d7b5,active,savings,Revolut,GBP,1000,56848580-a459-488b-8609-ef7f24017e82
+94dddc55-b882-4f84-9045-b2474306a4f0,active,trading,Freetrade,GBP,2000,7b9e8c3f-fbc9-46a9-b903-91ed0a3a6591
+8903e032-5ba5-496c-a26c-889f120a1c5e,active,current,Alfa-Bank,RUB,10000.23,b002d48e-35ee-4201-8a7f-527cdd6da3b8
+e658a966-f662-4801-b7fa-13f1657d6c18,active,savings,Alfa-Bank,USD,674.52,b002d48e-35ee-4201-8a7f-527cdd6da3b8

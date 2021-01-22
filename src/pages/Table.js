@@ -4,83 +4,25 @@ import Wrapper from '../components/Wrapper'
 import { useTable } from 'react-table'
 // import CurrencyInput from 'react-currency-input-field'
 import { formatValue } from 'react-currency-input-field'
-
 import colors from '../constants/colors'
 
+import db, { getDatabase } from '../database/data'
 
-// Data manpulations
+getDatabase()
 
-function arrayToJSONObject(arr) {
-    var keys = arr[0] // Headers
-    var newArr = arr.slice(1, arr.length) // Vacate keys from main array
-    var formatted = [],
-
-    data = newArr,
-    cols = keys,
-    l = cols.length;
-
-    for (var i=0; i<data.length; i++) {
-        var d = data[i],
-            o = {};
-        for (var j=0; j<l; j++)
-            o[cols[j]] = d[j];
-        formatted.push(o);
-    }
-    return formatted;
-}
-
-const formatAmount = (value, currency) => formatValue({value: value,intlConfig: { locale: 'en-GB', currency: currency ? currency : 'GBP' }})
-
+const formatAmount = (value, currency) =>
+    formatValue({
+        value: value,
+        intlConfig: { locale: 'en-GB', currency: currency ? currency : 'GBP' },
+    })
 
 // Table
 
 const Table = (props) => {
+    // const [data, setData] = useState(db)
 
-    const columns = React.useMemo(
-        () => [
-            {
-                Header: 'ID',
-                accessor: 'id',
-            },
-            {
-                Header: 'Name',
-                accessor: 'name',
-            },
-            {
-                Header: 'Currnecy',
-                accessor: 'currency',
-            },
-            {
-                Header: 'Current balance',
-                accessor: 'current-balance',
-                Cell: props => {
-                    return (
-                        <div 
-                            onClick={()=> {
-                                console.log(props)
-                            }}
-                        >
-                            {formatAmount(props.value, props.row.original.currency)}
-                        </div>
-                    )
-                }
-            },
+    const data = React.useMemo(() => db.accounts, [])
 
-        ], []
-    )
-
-    const data = React.useMemo(
-        () => arrayToJSONObject(
-            [
-                ['id', 'name', 'currency', 'current-balance'],
-                ['1', 'Revolut', 'GBP' , '1000'],
-                ['2', 'Revolut - USD', 'USD' , '10.23'],
-                ['3', 'Alfa', 'RUB' , '120233.11'],
-                ['4', 'Random Bank', 'GBP' , '120233.11'],
-            ]
-        ), []
-    )
-    
     const styles = {
         table: {
             backgroundColor: colors.grey95,
@@ -95,26 +37,66 @@ const Table = (props) => {
             textAlign: 'left',
             fontSize: 13,
             padding: '8px 24px 8px 8px',
-        }
+        },
     }
 
-    // const tableInstance = useTable({ columns, data })
+    const columns = React.useMemo(
+        () => [
+            {
+                Header: 'ID',
+                accessor: 'id',
+                Cell: (props) => {
+                    // return props.value.slice(0, 3) + '...'
+                    console.log(props.row.id)
+                    return props.row.index
+                },
+            },
+            {
+                Header: 'Name',
+                accessor: 'name',
+            },
+            {
+                Header: 'Currnecy',
+                accessor: 'currency',
+            },
+            {
+                Header: 'Current balance',
+                accessor: 'current-balance',
+                Cell: (props) => {
+                    return (
+                        <div
+                            onClick={() => {
+                                console.log(props)
+                            }}
+                        >
+                            {formatAmount(
+                                props.value + '', // WTF is going on here?
+                                props.row.original.currency
+                            )}
+                        </div>
+                    )
+                },
+            },
+        ],
+        []
+    )
+
     const {
         getTableProps,
         getTableBodyProps,
         headerGroups,
         rows,
         prepareRow,
-      } = useTable({ columns, data })
-    
+    } = useTable({ columns, data })
+
     return (
         <table {...getTableProps()} style={styles.table}>
             <thead>
-                {headerGroups.map(headerGroup => (
-                    <tr {...headerGroup.getHeaderGroupProps()} >
-                        {headerGroup.headers.map( column => (
-                            <th 
-                                {...column.getHeaderProps()} 
+                {headerGroups.map((headerGroup) => (
+                    <tr {...headerGroup.getHeaderGroupProps()}>
+                        {headerGroup.headers.map((column) => (
+                            <th
+                                {...column.getHeaderProps()}
                                 style={styles.header}
                             >
                                 {column.render('Header')}
@@ -125,11 +107,11 @@ const Table = (props) => {
             </thead>
 
             <tbody {...getTableBodyProps()}>
-                {rows.map(row => {
+                {rows.map((row) => {
                     prepareRow(row)
                     return (
                         <tr {...row.getRowProps()}>
-                            {row.cells.map(cell => {
+                            {row.cells.map((cell) => {
                                 return (
                                     <td
                                         {...cell.getCellProps()}
@@ -152,7 +134,6 @@ const Page = () => {
         <Wrapper>
             <Header>Table</Header>
             <div>
-                <div>Let's test Jira integration</div>
                 <Table />
             </div>
         </Wrapper>
